@@ -132,6 +132,11 @@
                             Contact
                         </a>
                     </li>
+                    <li>
+                        <a href="#kritik-saran">
+                            Kritik & Saran
+                        </a>
+                    </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -626,6 +631,77 @@ FEATURES SECTION
             </div>
         </section>
         <!-- END TESTIMONI -->
+        <section id="kritik-saran" class="section feedback-register light-background">
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Kritik & Saran</h2>
+                <p>Bagikan masukan Anda dan daftar menjadi nasabah kami.</p>
+            </div>
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <h3>Kritik & Saran</h3>
+                            <form id="feedback-form" class="mt-3">
+                                <div class="mb-3">
+                                    <label for="feedback-name" class="form-label">Nama</label>
+                                    <input type="text" id="feedback-name" class="form-control" placeholder="Nama lengkap" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedback-email" class="form-label">Email</label>
+                                    <input type="email" id="feedback-email" class="form-control" placeholder="Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedback-subject" class="form-label">Subjek</label>
+                                    <input type="text" id="feedback-subject" class="form-control" placeholder="Kritik atau saran" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="feedback-message" class="form-label">Pesan</label>
+                                    <textarea id="feedback-message" class="form-control" rows="4" placeholder="Tulis kritik atau saran Anda" required></textarea>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <button type="submit" id="feedback-submit" class="btn btn-primary">Simpan</button>
+                                    <button type="button" id="feedback-cancel" class="btn btn-secondary ms-3 d-none">Batal</button>
+                                </div>
+                                <div id="feedback-form-message" class="mt-3 text-success"></div>
+                            </form>
+                        </div>
+                        <div class="card p-4 mt-4">
+                            <h4>Daftar Kritik & Saran</h4>
+                            <div id="feedback-list" class="mt-3"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <h3>Daftar Nasabah</h3>
+                            <form id="registration-form" class="mt-3">
+                                <div class="mb-3">
+                                    <label for="registration-name" class="form-label">Nama</label>
+                                    <input type="text" id="registration-name" class="form-control" placeholder="Nama lengkap" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registration-email" class="form-label">Email</label>
+                                    <input type="email" id="registration-email" class="form-control" placeholder="Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registration-phone" class="form-label">No. Telepon</label>
+                                    <input type="tel" id="registration-phone" class="form-control" placeholder="0812xxxxxxxx" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registration-address" class="form-label">Alamat</label>
+                                    <textarea id="registration-address" class="form-control" rows="3" placeholder="Alamat lengkap" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Daftar</button>
+                                <div id="registration-form-message" class="mt-3 text-success"></div>
+                            </form>
+                        </div>
+                        <div class="card p-4 mt-4">
+                            <h4>Daftar Calon Nasabah</h4>
+                            <div id="registration-list" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     <!-- =======================================================
     FOOTER
@@ -683,16 +759,12 @@ FEATURES SECTION
                     <p>
                         Silakan hubungi kami untuk informasi layanan perbankan dan konsultasi finansial.
                     </p>
-                    <form action="forms/contact.php" method="post" class="php-email-form">
+                    <form id="contact-form" action="#" method="post">
                         <div class="newsletter-form">
-                            <input type="email" name="email">
+                            <input type="email" name="email" placeholder="Email" required>
                             <input type="submit" value="Kirim">
                         </div>
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">
-                            Pesan berhasil dikirim. Terima kasih.
-                        </div>
+                        <div id="contact-form-message" class="mt-3 text-success"></div>
                     </form>
                 </div>
             </div>
@@ -722,7 +794,7 @@ FEATURES SECTION
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/main.js"></script>
     <!-- ACTIVE MENU SINGLE PAGE -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
