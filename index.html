@@ -900,20 +900,6 @@ FEATURES SECTION
 </script>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  doc,
-  updateDoc,
-  deleteDoc,
-  onSnapshot,
-  query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBaPFUsSH-_n8m4DZ52jIKk6ngYJu3L2cc",
   authDomain: "btpn-syariah-web.firebaseapp.com",
@@ -928,17 +914,34 @@ let db = null;
 let analytics = null;
 let useFirebase = false;
 
-if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+// Declare firestore functions globally for this script
+let collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy;
+
+(async function () {
+  "use strict";
+
   try {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    analytics = getAnalytics(app);
+    const appModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+    const firestoreModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+    const analyticsModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js");
+
+    const app = appModule.initializeApp(firebaseConfig);
+    db = firestoreModule.getFirestore(app);
+    analytics = analyticsModule.getAnalytics(app);
+
+    collection = firestoreModule.collection;
+    addDoc = firestoreModule.addDoc;
+    doc = firestoreModule.doc;
+    updateDoc = firestoreModule.updateDoc;
+    deleteDoc = firestoreModule.deleteDoc;
+    onSnapshot = firestoreModule.onSnapshot;
+    query = firestoreModule.query;
+    orderBy = firestoreModule.orderBy;
+
     useFirebase = true;
   } catch (error) {
+    console.warn("Firebase diblokir (Ad-blocker/Koneksi). Form akan menggunakan mode lokal.");
   }
-}
-
-(function () {
   "use strict";
 
   const STORAGE_KEYS = {
@@ -1250,6 +1253,7 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
   window.addEventListener('load', initFeedbackAndRegistration);
 
 })();
+</script>
     <!-- ACTIVE MENU SINGLE PAGE -->
     <script>
     document.addEventListener("DOMContentLoaded", function() {
