@@ -782,6 +782,95 @@ FEATURES SECTION
             </p>
         </div>
     </footer>
+                                </div>
+                                <div id="registration-form-message" class="mt-3 text-success"></div>
+                            </form>
+                        </div>
+                        <div class="card p-4 mt-4">
+                            <h4>Daftar Calon Nasabah</h4>
+                            <div id="registration-list" class="mt-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- =======================================================
+    FOOTER
+    ======================================================== -->
+    <footer id="contact" class="footer position-relative light-background">
+        <div class="container footer-top">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6 footer-about">
+                    <a href="index.html" class="logo d-flex align-items-center">
+                        <span class="sitename">
+                            Bank Digital Syariah
+                        </span>
+                    </a>
+                    <div class="footer-contact pt-3">
+                        <p>Jl. Raya Pendamping Ngoro No. 88</p>
+                        <p>Mojokerto, Indonesia</p>
+                        <p class="mt-3">
+                            <strong>Phone:</strong>
+                            <span>+62 878-4900-0003</span>
+                        </p>
+                        <p>
+                            <strong>Email:</strong>
+                            <span>info@bankdigitalsyariah.com</span>
+                        </p>
+                    </div>
+                    <div class="social-links d-flex mt-4">
+                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Layanan</a></li>
+                        <li><a href="#">Statistik</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-3 footer-links">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Tabungan</a></li>
+                        <li><a href="#">Deposito</a></li>
+                        <li><a href="#">Mobile Banking</a></li>
+                        <li><a href="#">Internet Banking</a></li>
+                        <li><a href="#">Pinjaman Usaha</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-12 footer-newsletter">
+                    <h4>Hubungi Kami</h4>
+                    <p>
+                        Silakan hubungi kami untuk informasi layanan perbankan dan konsultasi finansial.
+                    </p>
+                    <form id="contact-form" action="#" method="post">
+                        <div class="newsletter-form">
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="submit" value="Kirim">
+                        </div>
+                        <div id="contact-form-message" class="mt-3 text-success"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container copyright text-center mt-4">
+            <p>
+                © <span>Copyright</span>
+                <strong class="px-1 sitename">
+                    Bank Digital Syariah
+                </strong>
+                <span>All Rights Reserved</span>
+            </p>
+        </div>
+    </footer>
     <!-- END FOOTER -->
     <!-- SCROLL TOP -->
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
@@ -789,6 +878,12 @@ FEATURES SECTION
     </a>
     <!-- PRELOADER -->
     <div id="preloader"></div>
+    <script>
+      window.addEventListener('load', () => {
+        const preloader = document.querySelector('#preloader');
+        if (preloader) preloader.remove();
+      });
+    </script>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -890,209 +985,6 @@ if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
       e.stopImmediatePropagation();
     });
   });
-
-
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
-
-
-  let scrollTop = document.querySelector('.scroll-top');
-
-  function toggleScrollTop() {
-    if (scrollTop) {
-      window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-    }
-  }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-
-  window.addEventListener('load', toggleScrollTop);
-  document.addEventListener('scroll', toggleScrollTop);
-
-
-  function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-  }
-  window.addEventListener('load', aosInit);
-
-
-  const glightbox = GLightbox({
-    selector: '.glightbox'
-  });
-
-
-  new PureCounter();
-
-
-  function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
-        new Swiper(swiperElement, config);
-      }
-    });
-  }
-
-  window.addEventListener("load", initSwiper);
-
-
-  const STORAGE_KEYS = {
-    feedback: "btpn_feedback_entries",
-    registration: "btpn_registration_entries"
-  };
-
-  let currentFeedbackEntries = [];
-  let currentRegistrationEntries = [];
-
-  function getStoredEntries(key) {
-    try {
-      return JSON.parse(localStorage.getItem(key)) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  function setStoredEntries(key, entries) {
-    localStorage.setItem(key, JSON.stringify(entries));
-  }
-
-  function renderFeedbackList(entries) {
-    const list = document.getElementById('feedback-list');
-    if (!list) return;
-
-    if (!entries) {
-      entries = getStoredEntries(STORAGE_KEYS.feedback);
-    }
-    currentFeedbackEntries = entries;
-
-    if (!entries.length) {
-      list.innerHTML = '<p class="text-muted">Belum ada kritik atau saran.</p>';
-      return;
-    }
-    list.innerHTML = entries.map(entry => `
-      <div class="feedback-entry border rounded p-3 mb-3">
-        <div class="d-flex justify-content-between align-items-start">
-          <div>
-            <strong>${entry.name}</strong>
-            <p class="mb-1"><small>${entry.email}</small></p>
-            <p class="mb-1"><em>${entry.subject}</em></p>
-          </div>
-          <div>
-            <button type="button" class="btn btn-sm btn-outline-primary me-2" data-action="edit" data-id="${entry.id}">Edit</button>
-            <button type="button" class="btn btn-sm btn-outline-danger" data-action="delete" data-id="${entry.id}">Hapus</button>
-          </div>
-        </div>
-        <p class="mt-3 mb-0">${entry.message}</p>
-      </div>
-    `).join('');
-  }
-
-  function renderRegistrationList(entries) {
-    const list = document.getElementById('registration-list');
-    if (!list) return;
-
-    if (!entries) {
-      entries = getStoredEntries(STORAGE_KEYS.registration);
-    }
-    currentRegistrationEntries = entries;
-projectId: "btpn-syariah-web",
-  storageBucket: "btpn-syariah-web.firebasestorage.app",
-  messagingSenderId: "333489873385",
-  appId: "1:333489873385:web:abb367120227978a386b78",
-  measurementId: "G-8NQGLJSCLQ"
-};
-
-let db = null;
-let analytics = null;
-let useFirebase = false;
-
-
-if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
-  try {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    analytics = getAnalytics(app);
-    useFirebase = true;
-    console.log("Firebase Firestore terhubung dengan sukses!");
-  } catch (error) {
-    console.error("Gagal menginisialisasi Firebase:", error);
-  }
-} else {
-  console.warn("Firebase belum dikonfigurasi. Menggunakan penyimpanan lokal (localStorage) sementara.");
-}
-
-(function () {
-  "use strict";
-
-
-  function toggleScrolled() {
-    const selectBody = document.querySelector('body');
-    const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
-  }
-
-  document.addEventListener('scroll', toggleScrolled);
-  window.addEventListener('load', toggleScrolled);
-
-
-  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
-
-  function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
-  }
-  if (mobileNavToggleBtn) {
-    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
-  }
-
-
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
-    });
-
-  });
-
-
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function (e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
-  });
-
-
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
-  }
 
 
   let scrollTop = document.querySelector('.scroll-top');
