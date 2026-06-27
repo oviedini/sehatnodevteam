@@ -923,11 +923,9 @@ let collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy;
   try {
     const appModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
     const firestoreModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
-    const analyticsModule = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js");
 
     const app = appModule.initializeApp(firebaseConfig);
     db = firestoreModule.getFirestore(app);
-    analytics = analyticsModule.getAnalytics(app);
 
     collection = firestoreModule.collection;
     addDoc = firestoreModule.addDoc;
@@ -1250,7 +1248,7 @@ let collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy;
 
   }
 
-  window.addEventListener('load', initFeedbackAndRegistration);
+  initFeedbackAndRegistration();
 
 })();
 </script>
